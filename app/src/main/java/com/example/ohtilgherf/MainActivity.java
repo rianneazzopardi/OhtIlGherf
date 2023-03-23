@@ -2,8 +2,10 @@ package com.example.ohtilgherf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,5 +33,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             setContentView(R.layout.activity_main_portrait);
         }
+    }
+
+    public void goToDifficultySelection(View v){
+        Intent intent = new Intent(this, DifficultySelection.class);
+        startActivity(intent);
     }
 }
