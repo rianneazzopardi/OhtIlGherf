@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="175dp"
+    android:layout_height="75dp"
+    android:id="@+id/category_button"
+    android:backgroundTint="@color/button"
+    android:fontFamily="@font/bubblegum_sans"
+    android:gravity="center"
+    android:textSize="20dp"
+    app:cornerRadius="10dp"
+    android:text="default"
+    android:layout_marginBottom="30dp"
+    app:iconSize="5dp"
+    android:layout_margin="10dp"/>

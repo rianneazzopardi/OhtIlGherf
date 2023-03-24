@@ -8,6 +8,8 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.ohtilgherf.Category;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -85,5 +87,22 @@ public class DbHelper extends SQLiteOpenHelper {
             difficulties.add(diff);
         }
         return difficulties;
+    }
+
+    public List<Category> getAllCategories(){
+        ArrayList<Category> categories = new ArrayList<Category>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"categoryID", "categoryName", "icon"};
+        Cursor cursor = db.query("categories", projection, null, null, null, null, null);
+
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("categoryID"));
+            String category = cursor.getString(cursor.getColumnIndexOrThrow("categoryName"));
+            String icon = cursor.getString(cursor.getColumnIndexOrThrow("icon"));
+            Category toAdd = new Category(id, category, icon);
+            categories.add(toAdd);
+        }
+        List<Category> unique = categories.stream().distinct().collect(Collectors.toList());
+        return unique;
     }
 }
