@@ -3,6 +3,8 @@ package com.example.ohtilgherf.category_selection;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ohtilgherf.Category;
@@ -40,10 +43,37 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
         Button b = holder.b;
         b.setText(c.categoryName);
         Context context = b.getContext();
-//        int id = context.getResources().getIdentifier(c.categoryIcon, "drawable", context.getPackageName());
-//        Drawable icon = context.getResources().getDrawable(id);
-//        b.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+        b.setBackgroundColor(ContextCompat.getColor(context, getBackgroundColorSwitch(c)));
+    }
 
+    private int getBackgroundColorSwitch(Category c) {
+        // Return the corresponding color resource ID based on the item's position or data
+        // For example:
+        switch (c.categoryName) {
+            case "Arts":
+                return R.color.arts;
+            case "Film & TV":
+                return R.color.film;
+            case "Food & Drink":
+                return R.color.food;
+            case "General Knowledge":
+                return R.color.general;
+            case "Geography":
+                return R.color.geo;
+            case "History":
+                return R.color.history;
+            case "Music":
+                return R.color.music;
+            case "Science":
+                return R.color.science;
+            case "Culture":
+                return R.color.culture;
+            case "Sport":
+                return R.color.sport;
+            default:
+                return R.color.button;
+
+        }
     }
 
     @Override
