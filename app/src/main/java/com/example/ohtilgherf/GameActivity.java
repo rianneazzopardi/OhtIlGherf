@@ -49,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
 
         helper = new DbHelper(this);
         int categoryID = helper.getCategoryID(category);
-        questions = helper.getTenQuestions(difficulty, categoryID);
+        questions = helper.getFiveQuestions(difficulty, categoryID);
 
         question = (TextView)findViewById(R.id.question);
         index = (TextView)findViewById(R.id.question_index);
@@ -123,13 +123,15 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void run(){
                     i++;
-                    if (i < 10) {
+                    if (i < 5) {
                         QuestionRound(questions);
                     } else {
-
+                        Intent intent = new Intent(GameActivity.this, ScoreScreen.class);
+                        intent.putExtra("SCORE", score);
+                        startActivity(intent);
                     }
                 }
-            }, 2000); //
+            }, 2000);
         }
     };
 

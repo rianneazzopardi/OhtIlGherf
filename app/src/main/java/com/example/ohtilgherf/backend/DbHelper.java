@@ -119,7 +119,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public ArrayList<Question> getTenQuestions(String difficulty, int category){
+    public ArrayList<Question> getFiveQuestions(String difficulty, int category){
         ArrayList<Question> questions = new ArrayList<Question>();
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {"questionID", "question", "answer_1", "answer_2", "answer_3", "correctAnswer"};
@@ -139,7 +139,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         Collections.shuffle(questions);
         ArrayList<Question> toReturn = new ArrayList<Question>();
-        for(int i = 0; i<10; i++){
+        for(int i = 0; i<5; i++){
             toReturn.add(questions.get(i));
         }
         return toReturn;
