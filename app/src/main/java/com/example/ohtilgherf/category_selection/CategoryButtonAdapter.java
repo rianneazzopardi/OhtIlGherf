@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,14 +44,15 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
         Category c = categories.get(position);
         Button b = holder.b;
         b.setText(c.categoryName);
+
         Context context = b.getContext();
-        b.setBackgroundColor(ContextCompat.getColor(context, getBackgroundColorSwitch(c)));
+        b.setBackgroundColor(ContextCompat.getColor(context, getBackgroundColorSwitch(c.categoryName)));
     }
 
-    private int getBackgroundColorSwitch(Category c) {
+    private int getBackgroundColorSwitch(String categoryName) {
         // Return the corresponding color resource ID based on the item's position or data
         // For example:
-        switch (c.categoryName) {
+        switch (categoryName) {
             case "Arts":
                 return R.color.arts;
             case "Film & TV":
@@ -95,6 +97,7 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
                     String difficulty = fetch.getStringExtra("DIFFICULTY");
                     Intent intent = new Intent(v.getContext(), GameActivity.class);
                     String cat = b.getText().toString();
+                    //setting the difficulty and the category for the particular question to be displayed
                     intent.putExtra("CATEGORY", cat);
                     intent.putExtra("DIFFICULTY", difficulty);
                     v.getContext().startActivity(intent);

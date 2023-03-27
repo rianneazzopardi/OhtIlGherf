@@ -19,4 +19,6 @@
     <color name="science">#E76666</color>
     <color name="culture">#4DEA34</color>
     <color name="sport">#437BCD</color>
+    <color name="correct">#34eb3d</color>
+    <color name="wrong">#eb3d34</color>
 </resources>
