@@ -34,7 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS \"categories\" " +
                 "(\"categoryID\" INTEGER PRIMARY KEY, " +
                 "\"categoryName\" TEXT NOT NULL, " +
-                "\"icon\" TEXT NOT NULL);"
+                "\"colour\" TEXT NOT NULL);"
         );
 
         db.execSQL("CREATE TABLE IF NOT EXISTS \"questions\" (" +
@@ -94,14 +94,13 @@ public class DbHelper extends SQLiteOpenHelper {
     public List<Category> getAllCategories(){
         ArrayList<Category> categories = new ArrayList<Category>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"categoryID", "categoryName", "icon"};
+        String[] projection = {"categoryID", "categoryName"};
         Cursor cursor = db.query("categories", projection, null, null, null, null, null);
 
         while(cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndexOrThrow("categoryID"));
             String category = cursor.getString(cursor.getColumnIndexOrThrow("categoryName"));
-            String icon = cursor.getString(cursor.getColumnIndexOrThrow("icon"));
-            Category toAdd = new Category(id, category, icon);
+            Category toAdd = new Category(id, category);
             categories.add(toAdd);
         }
         List<Category> unique = categories.stream().distinct().collect(Collectors.toList());
