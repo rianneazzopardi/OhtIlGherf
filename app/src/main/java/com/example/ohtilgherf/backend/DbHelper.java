@@ -1,4 +1,5 @@
 package com.example.ohtilgherf.backend;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.ohtilgherf.Category;
+import com.example.ohtilgherf.Question;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -105,4 +107,52 @@ public class DbHelper extends SQLiteOpenHelper {
         List<Category> unique = categories.stream().distinct().collect(Collectors.toList());
         return unique;
     }
+    public int getCategoryID(String category){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"categoryID"};
+        String selection = "categoryName = ?";
+        String[] selectionArgs = {category};
+        Cursor cursor = db.query("categories", projection, selection, selectionArgs, null, null, null);
+        int id = 0;
+        while(cursor.moveToNext()){
+            id = cursor.getInt(cursor.getColumnIndexOrThrow("categoryID"));
+        }
+        return id;
+    }
+
+    public ArrayList<Question> getTenQuestions(String difficulty, int category){
+        ArrayList<Question> questions = new ArrayList<Question>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"questionID", "question", "answer_1", "answer_2", "answer_3", "correctAnswer"};
+        String selection = "difficulty = ? AND categoryID = ?";
+        String[] selectionArgs = {difficulty, Integer.toString(category)};
+        Cursor cursor = db.query("questions", projection, selection, selectionArgs, null, null, null);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("questionID"));
+            String question = cursor.getString(cursor.getColumnIndexOrThrow("question"));
+            String ans_1 = cursor.getString(cursor.getColumnIndexOrThrow("answer_1"));
+            String ans_2 = cursor.getString(cursor.getColumnIndexOrThrow("answer_2"));
+            String ans_3 = cursor.getString(cursor.getColumnIndexOrThrow("answer_3"));
+            String correct = cursor.getString(cursor.getColumnIndexOrThrow("correctAnswer"));
+
+            Question toAdd = new Question(id, question, difficulty, correct, ans_1, ans_2, ans_3);
+            questions.add(toAdd);
+        }
+        Collections.shuffle(questions);
+        ArrayList<Question> toReturn = new ArrayList<Question>();
+        for(int i = 0; i<10; i++){
+            toReturn.add(questions.get(i));
+        }
+        return toReturn;
+    }
+
+    public void setCorrectAnswered(int questionId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToUpdate = new ContentValues();
+        dataToUpdate.put("answeredCorrectly", 1);
+        String selection = "questionID = ?";
+        String[] selectionArgs = {Integer.toString(questionId)};
+        db.update("questions", dataToUpdate, selection, selectionArgs);
+    }
+
 }

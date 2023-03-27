@@ -13,6 +13,9 @@
         android:theme="@style/Theme.OhtIlGherf"
         tools:targetApi="31">
         <activity
+            android:name=".GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".CategorySelection"
             android:exported="false" />
         <activity

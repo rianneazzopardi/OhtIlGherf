@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ohtilgherf.Category;
+import com.example.ohtilgherf.GameActivity;
 import com.example.ohtilgherf.MainActivity;
 import com.example.ohtilgherf.R;
 
@@ -92,7 +93,7 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
                 public void onClick(View v) {
                     Intent fetch = ((Activity) v.getContext()).getIntent();
                     String difficulty = fetch.getStringExtra("DIFFICULTY");
-                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    Intent intent = new Intent(v.getContext(), GameActivity.class);
                     String cat = b.getText().toString();
                     intent.putExtra("CATEGORY", cat);
                     intent.putExtra("DIFFICULTY", difficulty);
