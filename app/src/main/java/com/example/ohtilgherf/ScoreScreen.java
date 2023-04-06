@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,9 +37,19 @@ public class ScoreScreen extends AppCompatActivity {
             brainContainer.addView(brainIcon);
         }
 
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+    }
+
+    public void goToDifficultySelectionScreen(View view){
+        Intent intent = new Intent(this, DifficultySelection.class);
+        startActivity(intent);
+    }
+
+
+    public void goToHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DifficultySelection"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".CategoryScores">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/toolbar"
@@ -19,32 +19,30 @@
 
     <TextView
         android:id="@+id/trivia"
-        android:layout_width="363dp"
-        android:layout_height="94dp"
-        android:layout_marginBottom="492dp"
-        android:background="@drawable/back"
+        android:layout_width="388dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="508dp"
         android:fontFamily="@font/bubblegum_sans"
-        android:text="Pick a Difficulty"
+        android:text="Category High Scores"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="60dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.ohtilgherf.difficulty_selection.difficulty_button_list"
+        android:name="com.example.ohtilgherf.category_scores.CategoryScoreList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trivia"
-        app:layout_constraintVertical_bias="0.397"
-        tools:ignore="MissingConstraints"
-        tools:layout="@layout/fragment_difficulty_button_list" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:layout="@layout/fragment_category_score_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

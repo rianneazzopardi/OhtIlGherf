@@ -209,7 +209,7 @@ public class DbHelper extends SQLiteOpenHelper {
         // Returns a list of objects to create the Category score cards
         ArrayList<Category> categories = new ArrayList<Category>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"categoryID", "categoryName", "icon"};
+        String[] projection = {"categoryID", "categoryName"};
         Cursor cursor = db.query("categories", projection, null, null, null, null, null);
 
         while(cursor.moveToNext()){

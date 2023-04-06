@@ -84,7 +84,9 @@
             android:hint="button2"
             android:padding="16dp"
             android:textAllCaps="false"
-            app:cornerRadius="10dp" />
+            app:cornerRadius="10dp"
+            android:onClick="goToDifficultySelectionScreen"
+            />
 
     </TableRow>
 
@@ -106,7 +108,8 @@
                 android:hint="button4"
                 android:padding="16dp"
                 android:textAllCaps="false"
-                app:cornerRadius="10dp" />
+                app:cornerRadius="10dp"
+                android:onClick="goToHome"/>
 
         </TableRow>
     </TableLayout>
