@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ProfileActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/toolbar"
+        android:name="com.example.ohtilgherf.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_toolbar" />
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="540dp"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="Your Profile"
+        android:textColor="@color/black"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/picture_container"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:cardCornerRadius="125dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/difficulty_scores_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:onClick="changeProfilePicture"
+            android:src="@drawable/brain" />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/change_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="changeProfilePicture"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="Change Profile Picture"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picture_container" />
+
+    <TextView
+        android:id="@+id/high_scoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:fontFamily="@font/bubblegum_sans"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/category_scores_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picture_container" />
+
+    <Button
+        android:id="@+id/category_scores_button"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeMaxTextSize="50dp"
+        android:autoSizeMinTextSize="35dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/button"
+        android:fontFamily="@font/bubblegum_sans"
+        android:gravity="center"
+        android:text="Category Scores"
+        android:textAllCaps="false"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/difficulty_scores_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_pic"
+        app:strokeWidth="1dp"
+        android:onClick="goToCategoryScores"/>
+
+    <Button
+        android:id="@+id/difficulty_scores_button"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="32dp"
+        android:autoSizeMaxTextSize="50dp"
+        android:autoSizeMinTextSize="35dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/button"
+        android:fontFamily="@font/bubblegum_sans"
+        android:gravity="center"
+        android:text="Difficulty Scores"
+        android:textAllCaps="false"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="1dp"
+        android:onClick="goToDifficulyScores"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

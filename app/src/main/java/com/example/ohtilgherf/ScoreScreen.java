@@ -36,15 +36,6 @@ public class ScoreScreen extends AppCompatActivity {
             brainContainer.addView(brainIcon);
         }
 
-//        for (int i = 0; i < score; i++) {
-//            ImageView brainIcon = new ImageView(this);
-//            brainIcon.setImageResource(R.drawable.brain);
-//            brainIcon.setLayoutParams(new LinearLayout.LayoutParams(
-//                    LinearLayout.LayoutParams.WRAP_CONTENT,
-//                    LinearLayout.LayoutParams.WRAP_CONTENT
-//            ));
-//            brainContainer.addView(brainIcon);
-//        }
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

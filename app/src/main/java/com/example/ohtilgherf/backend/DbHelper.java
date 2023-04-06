@@ -33,8 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE IF NOT EXISTS \"categories\" " +
                 "(\"categoryID\" INTEGER PRIMARY KEY, " +
-                "\"categoryName\" TEXT NOT NULL, " +
-                "\"colour\" TEXT NOT NULL);"
+                "\"categoryName\" TEXT NOT NULL); "
         );
 
         db.execSQL("CREATE TABLE IF NOT EXISTS \"questions\" (" +
@@ -53,6 +52,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS \"difficulties\" (" +
                 "\"difficultyLevel\" INTEGER, " +
                 "\"difficulty\" TEXT PRIMARY KEY);");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS \"user\" (" +
+                "\"userID\" INTEGER,"+
+                "\"high_score\" INTEGER, " +
+                "\"profile_pic\" TEXT);");
 
         String[] insertions = Insertions.insertions;
         for(int i = 0; i<insertions.length; i++){
@@ -152,6 +156,99 @@ public class DbHelper extends SQLiteOpenHelper {
         String selection = "questionID = ?";
         String[] selectionArgs = {Integer.toString(questionId)};
         db.update("questions", dataToUpdate, selection, selectionArgs);
+    }
+
+    public void updateProfilePicture(String base){
+        // Inserts a Base64 string when a profile picture is chosen from gallery
+        System.out.println(base.length());
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToUpdate = new ContentValues();
+        dataToUpdate.put("profile_pic", base);
+        String selection = "userID = ?";
+        String[] selectionArgs = {"1"};
+        db.update("user", dataToUpdate, selection, selectionArgs);
+    }
+
+    public String getProfilePicture(){
+        // Obtains the Base64 profile picture
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"profile_pic"};
+        Cursor cursor = db.query("user", projection, null, null, null, null, null);
+        String pic = null;
+        if(cursor.moveToFirst()){
+            pic =  cursor.getString(cursor.getColumnIndexOrThrow("profile_pic"));
+        }
+        return pic;
+    }
+
+
+    public void updateHighScore(int score){
+        // Updates user's highscore
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToUpdate = new ContentValues();
+        dataToUpdate.put("high_score", score);
+        String selection = "userID = ?";
+        String[] selectionArgs = {Integer.toString(1)};
+        db.update("user", dataToUpdate, selection, selectionArgs);
+    }
+
+    public int getHighScore(){
+        // Fetches user's highscore
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"high_score"};
+        Cursor cursor = db.query("user", projection, null, null, null, null, null);
+        int score = 0;
+        if(cursor.moveToFirst()){
+            score =  cursor.getInt(cursor.getColumnIndexOrThrow("high_score"));
+        }
+        return score;
+    }
+
+
+    public List<Category> getAllCategoryScores(){
+        // Returns a list of objects to create the Category score cards
+        ArrayList<Category> categories = new ArrayList<Category>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"categoryID", "categoryName", "icon"};
+        Cursor cursor = db.query("categories", projection, null, null, null, null, null);
+
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("categoryID"));
+            String category = cursor.getString(cursor.getColumnIndexOrThrow("categoryName"));
+            String score = this.getCategoryScore(id);
+            Category toAdd = new Category(id, category, score);
+            categories.add(toAdd);
+        }
+        List<Category> unique = categories.stream().distinct().collect(Collectors.toList());
+        return unique;
+    }
+
+    public String getCategoryScore(int id){
+        // Returns guessed/total for a category in the db
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"questionID"};
+        String selection = "answeredCorrectly = 1 AND categoryID = ?";
+        String[] selectionArgs = {Integer.toString(id)};
+        Cursor correct = db.query("questions", projection, selection, selectionArgs, null, null, null);
+
+        selection = "categoryID = ?";
+        Cursor total = db.query("questions", projection, selection, selectionArgs, null, null, null);
+
+        return correct.getCount() + "/" + total.getCount();
+    }
+
+    public String getDifficultyScore(String difficulty){
+        // Returns guessed/total for a difficulty in the db
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"questionID"};
+        String selection = "answeredCorrectly = 1 AND difficulty = ?";
+        String[] selectionArgs = {difficulty};
+        Cursor correct = db.query("questions", projection, selection, selectionArgs, null, null, null);
+
+        selection = "difficulty = ?";
+        Cursor total = db.query("questions", projection, selection, selectionArgs, null, null, null);
+
+        return correct.getCount() + "/" + total.getCount();
     }
 
 }

@@ -21,4 +21,5 @@
     <color name="sport">#437BCD</color>
     <color name="correct">#34eb3d</color>
     <color name="wrong">#eb3d34</color>
+    <color name="toolbar">#FED1E7</color>
 </resources>

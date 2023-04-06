@@ -7,6 +7,16 @@
     tools:context=".ScoreScreen"
     android:background="@color/background">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/toolbar"
+        android:name="com.example.ohtilgherf.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_toolbar" />
+
     <TextView
         android:id="@+id/congrats"
         android:layout_width="349dp"
@@ -41,7 +51,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/congrats"
         app:layout_constraintVertical_bias="0.221"
-        tools:ignore="MissingConstraints"></LinearLayout>
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
 
     <TableLayout  android:layout_width="381dp"
         android:layout_height="212dp"

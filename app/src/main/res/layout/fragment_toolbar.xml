@@ -1,0 +1,35 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/toolbar">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="start"
+        android:src="@drawable/backbutton"
+        android:clickable="true"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_container"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="end"
+        app:cardBackgroundColor="@android:color/transparent">
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/brain"
+            android:clickable="true"/>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.appcompat.widget.Toolbar>

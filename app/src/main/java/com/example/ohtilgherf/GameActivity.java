@@ -126,6 +126,10 @@ public class GameActivity extends AppCompatActivity {
                     if (i < 5) {
                         QuestionRound(questions);
                     } else {
+                        if(score > helper.getHighScore()){
+                            helper.updateHighScore(score);
+                        }
+
                         Intent intent = new Intent(GameActivity.this, ScoreScreen.class);
                         intent.putExtra("SCORE", score);
                         startActivity(intent);
