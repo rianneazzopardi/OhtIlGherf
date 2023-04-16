@@ -102,9 +102,9 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void goToDifficulyScores(View v){
-//        Intent intent = new Intent(this, DifficultyScores.class);
-//        startActivity(intent);
-//    }
+    public void goToDifficultyScores(View v){
+        Intent intent = new Intent(this, DifficultyScores.class);
+        startActivity(intent);
+    }
 
 }
