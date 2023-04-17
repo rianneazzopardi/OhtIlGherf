@@ -114,7 +114,7 @@
         android:backgroundTint="@color/button"
         android:fontFamily="@font/bubblegum_sans"
         android:gravity="center"
-        android:onClick="goToDifficulyScores"
+        android:onClick="goToDifficultyScores"
         android:text="Difficulty Scores"
         android:textAllCaps="false"
         app:cornerRadius="10dp"
