@@ -2,6 +2,7 @@ package com.example.ohtilgherf;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -32,13 +33,20 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Picking layout which matches device orientation
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_profile_landscape);
+        } else{
+            setContentView(R.layout.activity_profile);
+        }
+
         // Hiding the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        setContentView(R.layout.activity_profile);
+
         ImageView profile_pic = (ImageView) findViewById(R.id.profile_pic);
-        TextView highScore = (TextView) findViewById(R.id.high_scoring);
+        TextView highScore = (TextView) findViewById(R.id.high_score);
         CardView card = (CardView) findViewById(R.id.picture_container);
         helper = new DbHelper(this);
 
@@ -106,5 +114,18 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DifficultyScores.class);
         startActivity(intent);
     }
+
+    @Override
+    // Changing the layout when the device's orientation changes
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_profile_landscape);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_profile);
+        }
+    }
+
 
 }

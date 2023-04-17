@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -37,8 +38,11 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_game_landscape);
+        } else{
+            setContentView(R.layout.activity_game);
+        }
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
@@ -138,6 +142,17 @@ public class GameActivity extends AppCompatActivity {
             }, 2000);
         }
     };
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_game_landscape);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_game);
+        }
+    }
 
 
 

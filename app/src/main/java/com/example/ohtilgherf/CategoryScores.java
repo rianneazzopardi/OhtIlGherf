@@ -11,11 +11,26 @@ public class CategoryScores extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_category_scores);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_category_scores_landscape);
+        } else{
+            setContentView(R.layout.activity_category_scores);
+        }
 
         // Removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_category_scores_landscape);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_category_scores);
         }
     }
 

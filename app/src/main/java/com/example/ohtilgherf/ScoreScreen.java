@@ -3,6 +3,7 @@ package com.example.ohtilgherf;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +15,14 @@ public class ScoreScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score_screen);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_score_screen_landscape);
+        } else{
+            setContentView(R.layout.activity_score_screen);
+        }
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         Intent intent = getIntent();
         int score = intent.getIntExtra("SCORE", 0);
 
@@ -51,5 +59,16 @@ public class ScoreScreen extends AppCompatActivity {
     public void goToHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_score_screen_landscape);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_score_screen);
+        }
     }
 }
