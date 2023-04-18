@@ -50,6 +50,7 @@ public class DifficultyButtonAdapter extends RecyclerView.Adapter<DifficultyButt
             super(itemView);
             b = (Button) itemView.findViewById(R.id.difficulty_button);
             b.setOnClickListener(new View.OnClickListener() {
+                //upon button press the value is passed as an intent to the next screen, that is the CategoryScreen
                 @Override
                 public void onClick(View v) {
                   Intent intent = new Intent(v.getContext(), CategorySelection.class);

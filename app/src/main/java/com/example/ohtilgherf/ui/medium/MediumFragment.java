@@ -34,6 +34,7 @@ public class MediumFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_medium, container, false);
         DbHelper helper = new DbHelper(view.getContext());
         score =  (TextView) view.findViewById(R.id.medium_score);
+        //setting the text to be displayed on the screen in the TextView
         score.setText("You guessed " + helper.getDifficultyScore("Medium") + " medium questions");
 
         return view;

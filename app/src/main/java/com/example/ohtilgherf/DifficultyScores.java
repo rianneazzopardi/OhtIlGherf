@@ -27,13 +27,10 @@ public class DifficultyScores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityDifficultyScoresBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        //passing each menu id as a set of ids because each menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
@@ -41,7 +38,7 @@ public class DifficultyScores extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // Hide the app bar
+        //removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
@@ -52,13 +49,13 @@ public class DifficultyScores extends AppCompatActivity {
         SpannableString spannableString = new SpannableString(item.getTitle());
         item.setTitle(spannableString);
 
-        // Set a listener to detect when a menu item is selected
+        //setting a listener to detect when a menu item is selected
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            // Handler for when a menu option is selected
+            //handler for when a menu option is clicked on
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                // Loop through all menu items to reset the color to black
+                //looping through all menu items to reset the color to black
                 int size = bottomNavigationView.getMenu().size();
                 for (int i = 0; i < size; i++) {
                     MenuItem menuItem = bottomNavigationView.getMenu().getItem(i);
@@ -67,12 +64,11 @@ public class DifficultyScores extends AppCompatActivity {
                     menuItem.setTitle(spannableString);
                 }
 
-                // Set the color of the selected menu item to yellow
+
                 SpannableString spannableString = new SpannableString(item.getTitle());
-                //spannableString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(DifficultyScores.this, R.color.yellow)), 0, spannableString.length(), 0);
                 item.setTitle(spannableString);
 
-                // Switch fragment to the one chosen
+                //switching the fragment according to the one chosen by the user
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.navigation_easy:

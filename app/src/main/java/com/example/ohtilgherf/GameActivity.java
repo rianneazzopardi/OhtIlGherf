@@ -38,15 +38,18 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setting the layout according to the orientation of the screen
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_game_landscape);
         } else{
             setContentView(R.layout.activity_game);
         }
+        //removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
+        //getting the difficulty and category chosen by the user in the previous screen
         Intent fetch =  getIntent();
         String difficulty = fetch.getStringExtra("DIFFICULTY");
         String category = fetch.getStringExtra("CATEGORY");
@@ -55,10 +58,12 @@ public class GameActivity extends AppCompatActivity {
         int categoryID = helper.getCategoryID(category);
         questions = helper.getFiveQuestions(difficulty, categoryID);
 
+        //setting a TextView to display the question
         question = (TextView)findViewById(R.id.question);
+        //setting a TextView to display the index of the question
         index = (TextView)findViewById(R.id.question_index);
 
-
+        //setting the answers to be chosen by the user as buttons
         option_1 = (Button) findViewById(R.id.button1);
         option_2 = (Button) findViewById(R.id.button2);
         option_3 = (Button) findViewById(R.id.button3);
@@ -71,6 +76,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+    //caters for a round of questions as well as checks the answer
     protected void QuestionRound(@NonNull ArrayList<Question> questions){
         Question q = questions.get(i);
 
@@ -108,7 +114,9 @@ public class GameActivity extends AppCompatActivity {
     View.OnClickListener checkAnswer = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            //setting the colours that the selected button will be displayed as when checked
+            //red denotes wrong answer
+            //green denotes correct answer
             int wrong = res.getColor(R.color.wrong);
             int correct = res.getColor(R.color.correct);
 
@@ -135,6 +143,7 @@ public class GameActivity extends AppCompatActivity {
                         }
 
                         Intent intent = new Intent(GameActivity.this, ScoreScreen.class);
+                        //passes the score through an intent
                         intent.putExtra("SCORE", score);
                         startActivity(intent);
                     }
@@ -146,7 +155,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        //setting the layout according to the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_game_landscape);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){

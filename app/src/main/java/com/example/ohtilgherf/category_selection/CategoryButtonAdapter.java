@@ -39,19 +39,18 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
         return new CategoryButtonAdapter.ViewHolder(itemView);
     }
 
+    //creating a button for every category in the database
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category c = categories.get(position);
         Button b = holder.b;
         b.setText(c.categoryName);
-
         Context context = b.getContext();
         b.setBackgroundColor(ContextCompat.getColor(context, getBackgroundColorSwitch(c.categoryName)));
     }
 
+    //returning the corresponding color resource ID based on the category
     private int getBackgroundColorSwitch(String categoryName) {
-        // Return the corresponding color resource ID based on the item's position or data
-        // For example:
         switch (categoryName) {
             case "Arts":
                 return R.color.arts;
@@ -94,6 +93,7 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
                 @Override
                 public void onClick(View v) {
                     Intent fetch = ((Activity) v.getContext()).getIntent();
+                    //fetching the difficulty from the previous activity
                     String difficulty = fetch.getStringExtra("DIFFICULTY");
                     Intent intent = new Intent(v.getContext(), GameActivity.class);
                     String cat = b.getText().toString();

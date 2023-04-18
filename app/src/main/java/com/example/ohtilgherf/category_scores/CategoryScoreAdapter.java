@@ -35,9 +35,9 @@ public class CategoryScoreAdapter extends RecyclerView.Adapter<CategoryScoreAdap
         return new CategoryScoreAdapter.ViewHolder(itemView);
     }
 
+    //a card is created for each category in the database displaying the score per category with the name of the category
     @Override
     public void onBindViewHolder(@NonNull CategoryScoreAdapter.ViewHolder holder, int position) {
-        // Card are created for each category in the db with the name, icon & guessed/total score
         Category c = scores.get(position);
         TextView name = holder.category_name;
         TextView score = holder.category_score;
@@ -47,8 +47,8 @@ public class CategoryScoreAdapter extends RecyclerView.Adapter<CategoryScoreAdap
         itemView.setBackgroundColor(ContextCompat.getColor(context, getBackgroundColorSwitch(c.categoryName)));
     }
 
+    //returning the corresponding color resource ID based on the category
     private int getBackgroundColorSwitch(String categoryName) {
-        // Return the corresponding color resource ID based on the item's position or data
         switch (categoryName) {
             case "Arts":
                 return R.color.arts;

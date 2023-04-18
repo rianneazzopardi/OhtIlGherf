@@ -15,20 +15,24 @@ public class ScoreScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setting the layout according to the orientation of the screen
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_score_screen_landscape);
         } else{
             setContentView(R.layout.activity_score_screen);
         }
+        //removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        //fetching the score from the previous activity
         Intent intent = getIntent();
         int score = intent.getIntExtra("SCORE", 0);
-
+        //displaying the score in a TextView
         TextView scoreTextView = findViewById(R.id.congrats);
         scoreTextView.setText("Congrats! You guessed " + score +"/5 questions!");
 
+        //displaying as many brains as the user guessed questions correctly
         LinearLayout brainContainer = findViewById(R.id.brain_container);
         int margin = getResources().getDimensionPixelSize(R.dimen.brain_margin);
         for (int i = 0; i < score; i++) {
@@ -45,9 +49,6 @@ public class ScoreScreen extends AppCompatActivity {
             brainContainer.addView(brainIcon);
         }
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
     }
 
     public void goToDifficultySelectionScreen(View view){
@@ -64,7 +65,7 @@ public class ScoreScreen extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        //setting the layout according to the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_score_screen_landscape);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){

@@ -34,10 +34,10 @@ public class Toolbar extends Fragment {
         CardView card = (CardView) view.findViewById(R.id.profile_container);
         DbHelper helper = new DbHelper(view.getContext());
 
-        // Converting the profile picture from Base64 to an image
+        //converting the profile picture from base64 to an image
         String base = helper.getProfilePicture();
         if(base == null){
-            // If the profile picture isn't set, a default image is shown
+            //if a profile picture wasn't chosen, a default image is shown
             profile.setImageResource(R.drawable.brain);
             card.setCardBackgroundColor(Color.TRANSPARENT);
         }
@@ -49,6 +49,7 @@ public class Toolbar extends Fragment {
 
         }
 
+        //if the back icon is pressed, the previous screen is shown
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +58,7 @@ public class Toolbar extends Fragment {
             }
         });
 
+        //if the profile icon, an intent is used to go to the Profile Activity
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

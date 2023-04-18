@@ -33,6 +33,7 @@ public class HardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hard, container, false);
         DbHelper helper = new DbHelper(view.getContext());
         score =  (TextView) view.findViewById(R.id.hard_score);
+        //setting the text to be displayed on the screen in the TextView
         score.setText("You guessed " + helper.getDifficultyScore("Hard") + " hard questions");
         return view;
     }

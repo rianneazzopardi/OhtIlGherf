@@ -35,6 +35,7 @@ public class EasyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_easy, container, false);
         DbHelper helper = new DbHelper(view.getContext());
         score =  (TextView) view.findViewById(R.id.easy_score);
+        //setting the text to be displayed on the screen in the TextView
         score.setText("You guessed " + helper.getDifficultyScore("Easy") + " easy questions");
         return view;
     }

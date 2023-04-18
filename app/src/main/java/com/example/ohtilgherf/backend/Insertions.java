@@ -1,5 +1,5 @@
 package com.example.ohtilgherf.backend;
-
+//inserting the data into the database
 public class Insertions {
     public static String[] insertions = {
                     "INSERT OR IGNORE INTO \"difficulties\" VALUES (1,'Easy');" ,

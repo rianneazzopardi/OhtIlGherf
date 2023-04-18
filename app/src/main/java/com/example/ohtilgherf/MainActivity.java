@@ -12,12 +12,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setting the layout according to the orientation of the screen
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_main_landscape);
         } else{
             setContentView(R.layout.activity_main_portrait);
         }
-
+        //removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        // Reload the appropriate layout when device orientation changes
+        //setting the layout according to the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_main_landscape);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //moves on to the next screen upon the button is clicked on
     public void goToDifficultySelection(View v){
         Intent intent = new Intent(this, DifficultySelection.class);
         startActivity(intent);

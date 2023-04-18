@@ -33,14 +33,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Picking layout which matches device orientation
+        //setting the layout according to the orientation of the screen
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_profile_landscape);
         } else{
             setContentView(R.layout.activity_profile);
         }
 
-        // Hiding the app bar
+        //removing the app bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
@@ -52,10 +52,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         highScore.setText("High Score: " + helper.getHighScore() + "/5");
 
-        // Converting the profile picture from Base64 to an image
+        //converting the profile picture from base64 to an image to be displayed on the profile screen
         String base = helper.getProfilePicture();
         if(base == null){
-            // If the profile picture isn't set, a default image is shown
+            //if a profile picture wasn't chosen, a default image is shown
             profile_pic.setImageResource(R.drawable.brain);
             card.setCardBackgroundColor(Color.TRANSPARENT);
         }
@@ -68,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void changeProfilePicture(View v){
-        // An advanced intent which allows the user to pick a profile picture from gallery
+        //allows the user to pick a profile picture from gallery - advanced intent
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // A handler for the advanced intent
+        //handler for the advanced intent
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
@@ -87,14 +87,14 @@ public class ProfileActivity extends AppCompatActivity {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-                // Chosen image is converted to Bse64 and saved in the db
+                //the chosen image is converted to base64 and saved in the database in the user table
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 helper.updateProfilePicture(encoded);
 
-                // Activity is reloaded to reflect new profile picture
+                //activity is reloaded to reflect the change and hence display the profile picture
                 Intent intent = new Intent(this, ProfileActivity.class);
                 finish();
                 startActivity(intent);
@@ -116,10 +116,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    // Changing the layout when the device's orientation changes
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        //setting the layout according to the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_profile_landscape);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
