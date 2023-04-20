@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/nav_easy">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.ohtilgherf.ui.easy.EasyFragment"
+        android:id="@+id/nav_easy"
+        android:name="com.example.ohtilgherf.Difficulty_Scores.easy.EasyFragment"
         android:label="Easy"
         tools:layout="@layout/fragment_easy" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.ohtilgherf.ui.medium.MediumFragment"
+        android:id="@+id/nav_medium"
+        android:name="com.example.ohtilgherf.Difficulty_Scores.medium.MediumFragment"
         android:label="Medium"
         tools:layout="@layout/fragment_medium" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.ohtilgherf.ui.hard.HardFragment"
+        android:id="@+id/nav_hard"
+        android:name="com.example.ohtilgherf.Difficulty_Scores.hard.HardFragment"
         android:label="Hard"
         tools:layout="@layout/fragment_hard" />
 </navigation>

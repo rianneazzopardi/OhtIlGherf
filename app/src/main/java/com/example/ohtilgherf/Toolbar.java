@@ -58,7 +58,7 @@ public class Toolbar extends Fragment {
             }
         });
 
-        //if the profile icon, an intent is used to go to the Profile Activity
+        //if the profile icon is pressed, an intent is used to go to the Profile Activity
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

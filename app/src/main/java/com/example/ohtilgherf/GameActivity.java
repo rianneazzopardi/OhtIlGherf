@@ -2,19 +2,16 @@ package com.example.ohtilgherf;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.example.ohtilgherf.backend.DbHelper;
@@ -26,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
     protected int score = 0;
     protected ArrayList<Question> questions = new ArrayList<Question>();
     protected TextView question;
-    protected TextView index;
+    protected TextView question_no;
     protected Button option_1;
     protected Button option_2;
     protected Button option_3;
@@ -61,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
         //setting a TextView to display the question
         question = (TextView)findViewById(R.id.question);
         //setting a TextView to display the index of the question
-        index = (TextView)findViewById(R.id.question_index);
+        question_no = (TextView)findViewById(R.id.question_index);
 
         //setting the answers to be chosen by the user as buttons
         option_1 = (Button) findViewById(R.id.button1);
@@ -82,7 +79,7 @@ public class GameActivity extends AppCompatActivity {
 
         question.setText(q.question);
 
-        index.setText((i+1) + "/" + questions.size());
+        question_no.setText((i+1) + "/" + questions.size());
 
         Resources res = getResources();
 

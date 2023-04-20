@@ -46,11 +46,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         ImageView profile_pic = (ImageView) findViewById(R.id.profile_pic);
-        TextView highScore = (TextView) findViewById(R.id.high_score);
+        TextView high_score = (TextView) findViewById(R.id.high_score);
         CardView card = (CardView) findViewById(R.id.picture_container);
         helper = new DbHelper(this);
 
-        highScore.setText("High Score: " + helper.getHighScore() + "/5");
+        high_score.setText("High Score: " + helper.getHighScore() + "/5");
 
         //converting the profile picture from base64 to an image to be displayed on the profile screen
         String base = helper.getProfilePicture();

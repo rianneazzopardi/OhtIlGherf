@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.medium.MediumFragment"
+    tools:context=".Difficulty_Scores.medium.MediumFragment"
     android:background="@color/background">
 
     <TextView

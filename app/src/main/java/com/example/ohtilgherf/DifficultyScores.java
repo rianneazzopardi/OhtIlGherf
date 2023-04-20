@@ -14,10 +14,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.ohtilgherf.Difficulty_Scores.easy.EasyFragment;
+import com.example.ohtilgherf.Difficulty_Scores.hard.HardFragment;
+import com.example.ohtilgherf.Difficulty_Scores.medium.MediumFragment;
+
 import com.example.ohtilgherf.databinding.ActivityDifficultyScoresBinding;
-import com.example.ohtilgherf.ui.easy.EasyFragment;
-import com.example.ohtilgherf.ui.hard.HardFragment;
-import com.example.ohtilgherf.ui.medium.MediumFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DifficultyScores extends AppCompatActivity {
@@ -29,14 +30,13 @@ public class DifficultyScores extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDifficultyScoresBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         //passing each menu id as a set of ids because each menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.nav_easy, R.id.nav_medium, R.id.nav_hard)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_difficulty_scores);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        NavController nav_controller = Navigation.findNavController(this, R.id.nav_host_fragment_activity_difficulty_scores);
+        NavigationUI.setupActionBarWithNavController(this, nav_controller, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, nav_controller);
 
         //removing the app bar
         if (getSupportActionBar() != null) {
