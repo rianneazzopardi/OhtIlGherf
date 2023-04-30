@@ -114,8 +114,8 @@ public class GameActivity extends AppCompatActivity {
             //setting the colours that the selected button will be displayed as when checked
             //red denotes wrong answer
             //green denotes correct answer
-            int wrong = res.getColor(R.color.wrong);
-            int correct = res.getColor(R.color.correct);
+            int wrong = res.getColor(R.color.wrong, null);
+            int correct = res.getColor(R.color.correct, null);
 
             Button b = (Button) view;
             if(b.getText() == questions.get(i).correctAnswer){
